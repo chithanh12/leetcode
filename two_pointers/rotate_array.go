@@ -11,6 +11,7 @@ func rotate(nums []int, k int) {
 	for i := l - 1; i >= k; i-- {
 		nums[i] = nums[i-k]
 	}
+
 	for i := 0; i < k; i++ {
 		nums[i] = tmp[i]
 	}
