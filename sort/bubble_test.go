@@ -7,6 +7,7 @@ import (
 
 func TestBubble(t *testing.T) {
 	num := []int{4, 2, 7, 5, 1}
+
 	sort(num)
 	assert.Equal(t, []int{1, 2, 4, 5, 7}, num)
 
