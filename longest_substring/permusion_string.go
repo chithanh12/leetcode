@@ -1,35 +1,41 @@
 package longest_substring
 
-func checkInclusion(s2 string, s1 string) bool {
-	tmp := map[byte]struct{}{}
-	for i := 0; i < len(s2); i++ {
-		tmp[s2[i]] = struct{}{}
+func checkInclusion(s1 string, s2 string) bool {
+	l1 := len(s1)
+	l2 := len(s2)
+	if l2 < l1 {
+		return false
 	}
-	for i := 0; i < len(s1)-len(s2); i++ {
-		if _, ok := tmp[s1[i]]; !ok {
-			continue
-		}
 
-		if isImutable(s2, s1, i) {
+	arr1 := make([]byte, 26, 26)
+	arr2 := make([]byte, 26, 26)
+	for i := 0; i < len(s1); i++ {
+		arr1[s1[i]-byte('a')]++
+		arr2[s2[i]-byte('a')]++
+	}
+
+	if l2 == l1 {
+		return sliceEqual(arr1, arr2)
+	}
+
+	for i := 0; i < l2-l1; i++ {
+		if sliceEqual(arr1, arr2) {
 			return true
 		}
+
+		arr2[s2[i+l1]-byte('a')]++
+		arr2[s2[i]-byte('a')]--
 	}
-	return false
+
+	return sliceEqual(arr1, arr2)
 }
 
-func isImutable(s2, s1 string, start int) bool {
-	tmp := map[byte]int{}
-	tmp1 := map[byte]int{}
-
-	for idx := 0; idx < len(s2); idx++ {
-		tmp[s1[idx+start]] += 1
-		tmp1[s2[idx]] += 1
-	}
-
-	for k, v1 := range tmp {
-		if v2, ok := tmp1[k]; !ok || v1 != v2 {
+func sliceEqual(arr1, arr2 []byte) bool {
+	for i := 0; i < len(arr1); i++ {
+		if arr1[i] != arr2[i] {
 			return false
 		}
 	}
+
 	return true
 }

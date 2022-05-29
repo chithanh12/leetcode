@@ -14,4 +14,5 @@ func TestSlice(t *testing.T) {
 
 func TestImpmutation(t *testing.T) {
 	assert.Equal(t, true, checkInclusion("ab", "eidbaooo"))
+	assert.Equal(t, true, checkInclusion("adc", "dcda"))
 }
