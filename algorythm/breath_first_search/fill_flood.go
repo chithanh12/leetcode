@@ -15,11 +15,7 @@ func fill(imgs [][]int, r, c, oldColor, color int, track []bool, colCount int) {
 		return
 	}
 
-	if imgs[r][c] != oldColor {
-		return
-	}
-
-	if track[r*colCount+c] {
+	if imgs[r][c] != oldColor || track[r*colCount+c] {
 		return
 	}
 
