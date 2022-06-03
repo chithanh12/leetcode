@@ -1,7 +1,5 @@
 package breath_first_search
 
-import "fmt"
-
 /*
 [1,0,1,0,0,0,1,1,1,1],
 [1,1,1,0,1,1,1,1,0,1],
@@ -24,7 +22,6 @@ func updateMatrix(mat [][]int) [][]int {
 	m, n := len(mat), len(mat[0])
 	tracking := make([]bool, m*n, m*n)
 	untracking := make(map[int]*point)
-	printMat(mat)
 	for i := 0; i < len(mat); i++ {
 		for j := 0; j < len(mat[0]); j++ {
 			if mat[i][j] == 0 {
@@ -63,16 +60,15 @@ func updateMatrix(mat [][]int) [][]int {
 
 			if found {
 				mat[p.y][p.x] = val
-				tracking[p.y*n+p.x] = true
 				removeKeys = append(removeKeys, key)
 			}
 		}
 
 		for _, k := range removeKeys {
 			delete(untracking, k)
+			tracking[k] = true
 		}
 
-		printMat(mat)
 	}
 
 	return mat
@@ -83,14 +79,4 @@ func min(x, y int) int {
 		return y
 	}
 	return x
-}
-
-func printMat(mat [][]int) {
-	for i := 0; i < len(mat); i++ {
-		for j := 0; j < len(mat[0]); j++ {
-			fmt.Printf("%v  ", mat[i][j])
-		}
-		fmt.Println()
-	}
-	fmt.Println("------------------------------------")
 }
