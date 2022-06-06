@@ -1,8 +1,7 @@
 package day11
 
 import (
-	"bytes"
-	"fmt"
+	"strings"
 )
 
 var (
@@ -21,48 +20,32 @@ var (
 )
 
 func letterCasePermutation(s string) []string {
-	rs := permutation([]byte(s))
-	result := make([]string, 0, len(rs))
-	fmt.Println("+++++++++++++++++++")
-
-	for _, ss := range rs {
-		result = append(result, string(ss))
-		fmt.Println(ss)
-	}
-
-	return result
+	return permutation([]byte(s))
 }
 
-func permutation(inputs []byte) [][]byte {
+func permutation(inputs []byte) []string {
 	if len(inputs) == 1 {
-		rs := make([][]byte, 0)
-		for _, p := range possibleValues(inputs[0]) {
-			rs = append(rs, []byte{p})
-		}
-
-		return rs
+		return possibleValues(inputs[0])
 	}
 
 	tmp := permutation(inputs[:len(inputs)-1])
 	pos := possibleValues(inputs[len(inputs)-1])
-	rs := make([][]byte, 0)
-
-	fmt.Printf("pos =%v, val = %v \n", pos, string(inputs[len(inputs)-1]))
-
-	for _, tt := range tmp {
-		for _, p := range pos {
-			xx := append(tt, p)
-			rs = append(rs, xx)
+	rs := make([]string, 0)
+	for idx, _ := range tmp {
+		for idx1, _ := range pos {
+			xx := tmp[idx] + pos[idx1]
+			rs = append(rs, string(xx))
 		}
 	}
 
 	return rs
 }
 
-func possibleValues(char byte) []byte {
+func possibleValues(char byte) []string {
 	if numbers[char] {
-		return []byte{char}
+		return []string{string([]byte{char})}
 	}
 
-	return append(bytes.ToLower([]byte{char}), bytes.ToUpper([]byte{char})...)
+	c := string([]byte{char})
+	return []string{strings.ToLower(c), strings.ToUpper(c)}
 }

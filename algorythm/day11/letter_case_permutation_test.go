@@ -2,15 +2,16 @@ package day11
 
 import (
 	"fmt"
-	"github.com/stretchr/testify/assert"
 	"testing"
+
+	"github.com/stretchr/testify/assert"
 )
 
 func TestLetterCasePermutation(t *testing.T) {
-	rs := letterCasePermutation("a1b2")
+	rs := letterCasePermutation("a1c2")
 	fmt.Println(rs)
 
-	assert.Equal(t, true, sliceStringEqual([]string{"a1b2", "a1B2", "A1b2", "A1B2"}, rs))
+	assert.Equal(t, true, sliceStringEqual([]string{"a1c2", "a1C2", "A1c2", "A1C2"}, rs))
 }
 
 func sliceStringEqual(s, t []string) bool {
