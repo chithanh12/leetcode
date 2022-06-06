@@ -68,7 +68,6 @@ func updateMatrix(mat [][]int) [][]int {
 			delete(untracking, k)
 			tracking[k] = true
 		}
-
 	}
 
 	return mat
