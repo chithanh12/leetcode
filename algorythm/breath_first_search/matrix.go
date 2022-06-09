@@ -1,18 +1,5 @@
 package breath_first_search
 
-/*
-[1,0,1,0,0,0,1,1,1,1],
-[1,1,1,0,1,1,1,1,0,1],
-[1,0,1,1,1,1,0,1,0,0],
-[1,0,1,1,1,0,1,1,1,1],
-[1,1,0,1,1,1,1,0,0,0],
-[1,1,0,0,1,0,1,1,0,1],
-[1,1,1,1,1,1,1,1,1,1],
-[1,1,0,0,0,1,1,1,0,0],
-[0,1,1,1,0,0,1,0,1,1],
-[1,1,0,0,0,1,0,1,1,0]
-*/
-
 type point struct {
 	x int
 	y int
@@ -22,6 +9,7 @@ func updateMatrix(mat [][]int) [][]int {
 	m, n := len(mat), len(mat[0])
 	tracking := make([]bool, m*n, m*n)
 	untracking := make(map[int]*point)
+
 	for i := 0; i < len(mat); i++ {
 		for j := 0; j < len(mat[0]); j++ {
 			if mat[i][j] == 0 {
