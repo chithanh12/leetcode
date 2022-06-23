@@ -1,4 +1,4 @@
-package day3
+package day4
 
 import (
 	"github.com/stretchr/testify/assert"

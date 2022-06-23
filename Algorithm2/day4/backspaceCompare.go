@@ -1,4 +1,4 @@
-package day3
+package day4
 
 func backspaceCompare(s string, t string) bool {
 	ss := trim([]byte(s))
